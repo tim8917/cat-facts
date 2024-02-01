@@ -46,13 +46,12 @@ function FactComponent() {
     <Root>
       <TextBox>
         {fact.text}
-        {/* The RAM sensor is down, back up the redundant driver so we can copy the JSON bus!. */}
       </TextBox>
       <ButtonsBox className="buttons-box">
-        <IconButton aria-label="delete" onClick={handleDelete}>
+        <IconButton aria-label="delete" title="delete" onClick={handleDelete} >
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="favourite" onClick={handleAddToFavourites}>
+        <IconButton aria-label="favourite" title="add to favourites" onClick={handleAddToFavourites}>
           <FavoriteIcon />
         </IconButton>
       </ButtonsBox>
