@@ -2,7 +2,7 @@
   "name": "cat-facts",
   "productName": "cat-facts",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Desktop application that notifies the user on the latest cat facts.",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

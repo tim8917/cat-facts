@@ -10,5 +10,5 @@ export const useRandomFact = (defaultFact?: Fact) => {
     });
   }
 
-  return [fact, loadRandomFact] as const;
+  return {fact, setFact, loadRandomFact};
 }

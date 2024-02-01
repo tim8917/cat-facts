@@ -27,15 +27,14 @@ const TextBox = styled.div`
 `;
 
 function FactComponent() {
-  const {fact, loadRandomFact} = useCurrentFact();
+  const {fact, loadRandomFact, addToFavourites} = useCurrentFact();
 
-  function handleAddToFavourites() {
-    // TODO
-    // addToFavourites();
+  async function handleAddToFavourites() {
+    addToFavourites(fact);
     loadRandomFact();
   }
 
-  function handleDelete() {
+  async function handleDelete() {
     loadRandomFact();
   }
 

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import FavoriteIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
 import FactComponent from '../fact/fact';
+import FavouriteFacts from '../favourite-facts/favourite-facts';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -58,7 +59,7 @@ export default function AppLayout() {
         <FactComponent />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Favourites
+        <FavouriteFacts />
       </CustomTabPanel>
     </Box>
   );

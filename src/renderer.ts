@@ -28,6 +28,6 @@
 
 import './index.css';
 import './index.tsx';
-import './api/api-interface';
+import './window-ipc-interface';
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
