@@ -3,6 +3,7 @@
 
 import { contextBridge, ipcRenderer  } from 'electron';
 import apiMethods from './api';
+import { UserData } from './types/cat-facts';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reducer = (acc: any, methodName: string) => ({...acc, [methodName]: () => ipcRenderer.invoke(methodName)})
@@ -14,6 +15,5 @@ contextBridge.exposeInMainWorld('api', api);
 
 contextBridge.exposeInMainWorld('fs', {
   getUserData: () => ipcRenderer.invoke('getUserData'),
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  saveUserData: (data: any) => ipcRenderer.invoke('saveUserData', data),
+  saveUserData: (data: UserData) => ipcRenderer.invoke('saveUserData', data),
 });

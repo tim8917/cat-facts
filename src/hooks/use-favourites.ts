@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Fact } from '../../src/model';
+import { Fact } from '../types/cat-facts';
 
 export const useFavourites = () => {
   const [favourites, setFavourites] = useState<Fact[]>([]);

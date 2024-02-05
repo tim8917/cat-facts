@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { FACTS_API_URL } from '../constants';
 
 const apiMethods = {
   getRandomCatFact: async () => {
-    const response = await axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1');
+    const response = await axios.get(`${FACTS_API_URL}/random?animal_type=cat&amount=1`);
 
     return response.data;
   }

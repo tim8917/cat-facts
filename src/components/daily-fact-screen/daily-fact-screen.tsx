@@ -1,8 +1,9 @@
+import React from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteIcon from '@mui/icons-material/Star';
 import styled from "@emotion/styled";
-import { useCurrentFact } from '../../../src/contexts/current-fact-context';
+import { useCurrentFact } from '../../contexts/current-fact-context';
 
 const Root = styled.div`
   position: relative;
@@ -26,7 +27,7 @@ const TextBox = styled.div`
 
 `;
 
-function FactComponent() {
+export const DailyFactScreen: React.FC = () => {
   const {fact, loadRandomFact, addToFavourites} = useCurrentFact();
 
   async function handleAddToFavourites() {
@@ -58,5 +59,3 @@ function FactComponent() {
     </Root>
   );
 }
-
-export default FactComponent;

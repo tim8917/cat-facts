@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react/pure';
 import * as CurrentFactContext from '../../../src/contexts/current-fact-context';
 import * as FavouriteFactsContext from '../../contexts/favourite-facts-context';
-import AppLayout from './app-layout';
+import { AppLayout } from './app-layout';
 
 const useCurrentFactMockValues = {
   fact: {_id: '1', text: 'fact-01'}, 

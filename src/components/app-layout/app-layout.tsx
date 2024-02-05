@@ -4,43 +4,34 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import FavoriteIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
-import FactComponent from '../fact/fact';
-import FavouriteFacts from '../favourite-facts/favourite-facts';
+import { DailyFactScreen } from '../daily-fact-screen/daily-fact-screen';
+import { FavouriteFactsScreen } from '../favourite-facts-screen/favourite-facts-screen';
+import { TabPanel } from '../tab-panel/tab-panel';
+import { SvgIconProps } from '@mui/material';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+interface ScreenConfigItem {
+  icon: React.FC<SvgIconProps>;
+  label: string;
+  screen: React.FC;
 }
 
-function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+type ScreensConfigs = ScreenConfigItem[];
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Box>{children}</Box>
-        </Box>
-      )}
-    </div>
-  );
-}
+const screensConfigs: ScreensConfigs = [
+  {
+    icon: HomeIcon,
+    label: 'cats',
+    screen: DailyFactScreen,
+  },
+  {
+    icon: FavoriteIcon,
+    label: 'favourites',
+    screen: FavouriteFactsScreen,
+  },
+];
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 
-export default function AppLayout() {
+export const AppLayout: React.FC = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = async (event: React.SyntheticEvent, newValue: number) => {
@@ -50,17 +41,24 @@ export default function AppLayout() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab icon={<HomeIcon />} label="cats" {...a11yProps(0)} />
-          <Tab icon={<FavoriteIcon />} label="favourites" {...a11yProps(1)} />
+        <Tabs value={value} onChange={handleChange} aria-label="cat facts app tabs">
+          {screensConfigs.map(({icon: Icon, label}, index) => (
+            <Tab icon={<Icon />} label={label} {...a11yProps(index)} key={label} />
+          ))}
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        <FactComponent />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <FavouriteFacts />
-      </CustomTabPanel>
+      {screensConfigs.map(({screen: Screen, label}, index) => (
+        <TabPanel value={value} index={index} key={label}>
+          <Screen />
+        </TabPanel>
+      ))}
     </Box>
   );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `app-tab-${index}`,
+    'aria-controls': `app-tabpanel-${index}`,
+  };
 }

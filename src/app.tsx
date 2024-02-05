@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import AppLayout from './components/app-layout/app-layout';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './themes/theme';
 import { useRandomFact } from './hooks/use-random-fact';
 import { CurrentFactProvider } from './contexts/current-fact-context';
 import { FavouriteFactsProvider } from './contexts/favourite-facts-context';
 import { useFavourites } from './hooks/use-favourites';
-import { UserData } from './model';
+import { UserData } from './types/cat-facts';
+import { AppLayout } from './components/app-layout/app-layout';
 
 function App() {
   const {fact, setFact, loadRandomFact} = useRandomFact();
@@ -14,20 +14,25 @@ function App() {
 
   useEffect(() => {
     window.fs.getUserData().then((userData: UserData) => {
-      if (userData.currentFact) {
+      const isCurrentFactPresentOnInit = Boolean(userData.currentFact);
+      const isFavouriteFactsDataPresentOnInit = Boolean(userData.currentFact);
+
+      if (isCurrentFactPresentOnInit) {
         setFact(userData.currentFact);
       } else {
         loadRandomFact();
       }
 
-      if (userData.favouriteFacts) {
+      if (isFavouriteFactsDataPresentOnInit) {
         setFavourites(userData.favouriteFacts);
       }
     });
   }, []);
 
   useEffect(() => {
-    if (!fact) {
+    const isUpdatingAction = Boolean(fact);
+
+    if (!isUpdatingAction) {
       return ;
     } 
     

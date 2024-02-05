@@ -1,6 +1,13 @@
 import { createContext, useContext } from 'react';
+import { Fact } from '../types/cat-facts';
 
-const CurrentFactContext = createContext(null);
+interface CurrentFactContextType {
+  fact: Fact,
+  addToFavourites: (fact: Fact) => void,
+  loadRandomFact: () => void,
+}
+
+const CurrentFactContext = createContext<CurrentFactContextType>(null);
 
 export function useCurrentFact() {
   return useContext(CurrentFactContext);

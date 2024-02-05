@@ -1,8 +1,9 @@
+import React from 'react';
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { useFavouriteFacts } from '../../../src/contexts/favourite-facts-context';
-import { Fact } from '../../../src/model';
+import { useFavouriteFacts } from '../../contexts/favourite-facts-context';
+import { Fact } from '../../types/cat-facts';
 
-function FavouriteFacts() {
+export const FavouriteFactsScreen: React.FC = () => {
   const favouriteFacts = useFavouriteFacts();
 
   if (!favouriteFacts || !favouriteFacts.length) {
@@ -23,5 +24,3 @@ function FavouriteFacts() {
     </List>
   );
 }
-
-export default FavouriteFacts;

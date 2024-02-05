@@ -1,6 +1,6 @@
 import {fireEvent, render} from '@testing-library/react/pure';
-import FactComponent from "./fact";
-import * as CurrentFactContext from '../../../src/contexts/current-fact-context';
+import * as CurrentFactContext from '../../contexts/current-fact-context';
+import { DailyFactScreen } from './daily-fact-screen';
 
 const useCurrentFactMockValues = {
   fact: {_id: '1', text: 'fact-01'}, 
@@ -12,7 +12,7 @@ describe('FactComponent', () => {
   jest.spyOn(CurrentFactContext, 'useCurrentFact').mockImplementation(() => useCurrentFactMockValues);
 
   const {queryByTitle, queryByText, getByTitle} = render(
-    <FactComponent />
+    <DailyFactScreen />
   );
 
   it('then it behaves correctly', () => {

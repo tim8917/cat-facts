@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react/pure';
 import * as FavouriteFactsContext from '../../contexts/favourite-facts-context';
-import FavouriteFacts from './favourite-facts';
+import { FavouriteFactsScreen } from './favourite-facts-screen';
 
-describe('FavouriteFacts', () => {
+describe('FavouriteFactsPanel', () => {
   describe('given no any favourite facts', () => {
     jest.spyOn(FavouriteFactsContext, 'useFavouriteFacts').mockReturnValue([]);
 
     const {queryByText} = render(
-      <FavouriteFacts />
+      <FavouriteFactsScreen />
     );
 
     it('then provides corresponding message', () => {
@@ -22,7 +22,7 @@ describe('FavouriteFacts', () => {
     ]);
 
     const {queryByText} = render(
-      <FavouriteFacts />
+      <FavouriteFactsScreen />
     );
 
     it('then provides these facts texts', () => {
